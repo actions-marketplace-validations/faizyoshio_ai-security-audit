@@ -2,6 +2,9 @@
   <img src="assets/banner.svg" alt="AI Security Audit Banner" width="100%">
 
   <p align="center">
+    <a href="https://github.com/marketplace/actions/ai-security-audit">
+      <img src="https://img.shields.io/badge/Marketplace-v1.0.0-2088FF.svg?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Marketplace">
+    </a>
     <a href="https://github.com/faizyoshio/ai-security-audit/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" alt="License">
     </a>
