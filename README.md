@@ -1,31 +1,45 @@
-![AI Security Audit Banner](assets/banner.svg)
+<div align="center">
+  <img src="assets/banner.svg" alt="AI Security Audit Banner" width="100%">
 
-# AI Security Audit (`/ai-security-audit`)
+  <p align="center">
+    <a href="https://github.com/faizyoshio/ai-security-audit/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" alt="License">
+    </a>
+    <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">
+      <img src="https://img.shields.io/badge/OWASP-LLM_Top_10_(2025)-orange.svg?style=for-the-badge" alt="OWASP LLM 2025">
+    </a>
+    <a href="https://github.com/faizyoshio/ai-security-audit">
+      <img src="https://img.shields.io/badge/Agentic_Security-ASI01--ASI10-red.svg?style=for-the-badge" alt="Agentic ASI 2026">
+    </a>
+    <a href="https://github.com/faizyoshio/ai-security-audit">
+      <img src="https://img.shields.io/badge/Platform-Claude_|_Cursor_|_Antigravity-purple.svg?style=for-the-badge" alt="Platform">
+    </a>
+  </p>
 
-<p align="center">
-  <a href="https://github.com/faizyoshio/ai-security-audit/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License">
-  </a>
-  <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">
-    <img src="https://img.shields.io/badge/OWASP-LLM_Top_10_(2025)-orange.svg" alt="OWASP LLM 2025">
-  </a>
-  <a href="https://github.com/faizyoshio/ai-security-audit">
-    <img src="https://img.shields.io/badge/Agentic_Security-ASI01--ASI10-red.svg" alt="Agentic ASI 2026">
-  </a>
-  <a href="https://github.com/faizyoshio/ai-security-audit">
-    <img src="https://img.shields.io/badge/Platform-Claude_Code_|_Cursor_|_Antigravity-purple.svg" alt="Platform">
-  </a>
-</p>
+  <p align="center">
+    <strong>A unified, source-first security evaluation framework and autonomous agent skill.</strong><br>
+    Audit, red-team, and harden modern AI systems: Chatbots, Copilots, RAG Pipelines, Autonomous Multi-Agent Workflows, and Model Context Protocol (MCP) ecosystems.
+  </p>
 
-A unified, source-first security evaluation framework and autonomous agent skill designed to audit, red-team, and harden modern AI architectures: **Chatbots, Copilots, RAG Pipelines, Autonomous Multi-Agent Workflows, and Model Context Protocol (MCP) ecosystems**.
+  <p align="center">
+    <sub>Engineered by <a href="https://github.com/faizyoshio/">faizyoshio</a> for AppSec teams, AI engineers, and security researchers.</sub>
+  </p>
 
-Engineered by **[faizyoshio](https://github.com/faizyoshio/)** for security researchers, AppSec engineers, and AI developers.
+  <p align="center">
+    <a href="#quickstart--installation">Quickstart</a> •
+    <a href="#key-differentiators">Differentiators</a> •
+    <a href="#standalone-cli-tools">CLI Tools</a> •
+    <a href="#the-6-phase-audit-lifecycle">Audit Lifecycle</a> •
+    <a href="#canonical-taxonomy">Taxonomy</a> •
+    <a href="#educational-sandbox-damn-vulnerable-ai-app">Demo Sandbox</a>
+  </p>
+</div>
 
 ---
 
 ## Key Differentiators
 
-Most AI security tools either run basic prompt fuzzing (producing hallucinated false positives) or treat AI apps as traditional black-box web endpoints. `ai-security-audit` bridges defensive source analysis, active network probing, and adversarial testing:
+Most AI security tools either perform superficial prompt fuzzing (producing hallucinated false positives) or treat AI apps as traditional black-box endpoints. **`ai-security-audit`** unifies defensive source analysis, network reconnaissance, and empirical exploit verification:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -49,11 +63,11 @@ Most AI security tools either run basic prompt fuzzing (producing hallucinated f
   - Action-binding & confirmation failures                  - Insecure deserialization
 ```
 
-1. **Source-First Code Audit**: Traces data flow from untrusted input through tokenization, orchestrator prompts, tool calling, and output sinks.
-2. **Empirical False-Positive Gates**: Eliminates confabulation with the *Run-Twice Rule*, *Known-Secret Anchors*, and *Out-of-Band (OOB) Egress Verification*.
-3. **Deep Vector & RAG Hardening**: Audits unauthenticated vector stores (Chroma, Qdrant, Weaviate, Milvus, pgvector), multi-tenant namespace leaks, and persistent corpus poisoning across sessions.
-4. **Shadow & Zombie AI Discovery**: Identifies unhardened legacy API versions (`/v1/chat`, deprecated OpenAPI specs) that bypass modern guardrails.
-5. **Actionable Remediation**: Produces minimal effective code patches rather than vague prompt-engineering advice.
+1. **Source-First Code Audit**: Traces data flow from untrusted user inputs through tokenizers, orchestrator prompts, tool handlers, and execution sinks.
+2. **Empirical False-Positive Gates**: Discards hallucinated leaks using the *Run-Twice Rule*, *Known-Secret Anchors*, and *Out-of-Band (OOB) Egress Verification*.
+3. **Deep Vector & RAG Hardening**: Audits unauthenticated vector stores (Chroma, Qdrant, Weaviate, Milvus, pgvector), multi-tenant namespace leaks, and persistent corpus poisoning.
+4. **Shadow & Zombie AI Discovery**: Discovers unmaintained legacy API versions (`/v1/chat`, deprecated OpenAPI specs) that bypass modern guardrails.
+5. **Actionable Remediation**: Delivers concrete, minimal effective code fixes rather than generic prompt engineering recommendations.
 
 ---
 
@@ -61,13 +75,50 @@ Most AI security tools either run basic prompt fuzzing (producing hallucinated f
 
 `ai-security-audit` synthesizes five specialized security engineering methodologies into one workflow:
 
-| Pillar | Focus Area | Core Standard |
-|---|---|---|
-| **1. Source-First Code Audit** | Trust boundaries, privilege models, write isolation, sink taint analysis | Defensive AppSec |
-| **2. Adversarial Red-Teaming** | Prompt injection, jailbreaking, excessive agency, tool coercion | OWASP LLM Top 10 (2025) |
-| **3. Empirical Exploit Verification** | Zero-confabulation gates, verifiable cross-tenant proof, OOB exfil | Bug Bounty Standard |
-| **4. RAG & Vector Pipeline Audit** | Vector database security, namespace isolation, chunk leakage | OWASP LLM08 (2025) |
-| **5. Shadow AI API Discovery** | API inventory drift, legacy route diffing, auth regressions | OWASP API9 (2023) |
+| Pillar | Focus Area | Core Standard | Source Alignment |
+|---|---|---|---|
+| **1. Source-First Code Audit** | Trust boundaries, privilege models, write isolation, sink taint analysis | Defensive AppSec | `security-audit` |
+| **2. Adversarial Red-Teaming** | Prompt injection, jailbreaking, excessive agency, tool coercion | OWASP LLM 2025 | `llm-redteam` |
+| **3. Empirical Exploit Verification** | Zero-confabulation gates, verifiable cross-tenant proof, OOB exfil | Bug Bounty Standard | `hunt-llm-ai` |
+| **4. RAG & Vector Pipeline Audit** | Vector database security, namespace isolation, chunk leakage | OWASP LLM08:2025 | `hunt-rag-vector` |
+| **5. Shadow AI API Discovery** | API inventory drift, legacy route diffing, auth regressions | OWASP API9:2023 | `hunt-shadow-api` |
+
+---
+
+## Standalone CLI Tools
+
+In addition to the autonomous agent skill (`SKILL.md`), this repository provides standalone Python utilities for immediate local verification:
+
+### 1. Vector Database Port & Exposure Scanner
+Probes standard vector database ports and verifies unauthenticated REST/gRPC endpoints:
+```bash
+# Basic scan against localhost
+python tools/scan_vector_ports.py --host 127.0.0.1
+
+# Export results to JSON for CI/CD pipelines
+python tools/scan_vector_ports.py --host 127.0.0.1 --json
+```
+
+### 2. Shadow & Zombie OpenAPI Spec Differ
+Compares an older OpenAPI specification against the current one and checks if removed routes remain live on the target:
+```bash
+python tools/diff_openapi.py \
+  --old archived_v1_swagger.json \
+  --new active_v2_openapi.json \
+  --target https://api.target.com
+```
+
+### 3. Out-of-Band (OOB) HTTP Callback Listener
+Verifies empirical data exfiltration and canary callbacks, preventing model hallucination:
+```bash
+python tools/oob_listener.py --port 8888
+```
+
+### 4. Unicode Token Smuggling Encoder
+Encodes strings into invisible Unicode Tag characters (`U+E0000`–`U+E007F`) to test tokenizer boundary bypasses:
+```bash
+python payloads/token_smuggling_unicode.py "Ignore previous instructions"
+```
 
 ---
 
@@ -81,6 +132,9 @@ flowchart LR
     P4 --> P5["Phase 5\nDownstream Sinks"]
     P5 --> P6["Phase 6\nChained Remediation"]
 ```
+
+<details>
+<summary><strong>Click to expand phase details</strong></summary>
 
 ### Phase 1: Reconnaissance & Shadow AI API Inventory
 - Discovers hidden/undocumented endpoints (`/api/v1/chat`, `/api/beta/generate`, `/api/internal/completion`).
@@ -108,86 +162,64 @@ flowchart LR
 ### Phase 6: Chained Impact Triage & Remediation
 - Validates real exploit chains (e.g., Prompt Injection + Tool Misuse → IMDS SSRF → Cloud Credential Theft).
 - Generates reproducible PoCs and minimal effective code diffs.
+</details>
 
 ---
 
-## Standalone CLI Tools
+## Canonical Taxonomy
 
-This repository includes standalone Python utilities for automated verification without needing an active agent:
+Unified mapping across **OWASP Top 10 for LLM Applications (2025)** and **OWASP Agentic Security Initiative (ASI01-ASI10)**:
 
-### 1. Vector Database Port & Exposure Scanner
-Probes standard vector database ports and verifies unauthenticated REST/gRPC endpoints:
-```bash
-python tools/scan_vector_ports.py --host 127.0.0.1
-# Output in JSON format
-python tools/scan_vector_ports.py --host 127.0.0.1 --json
-```
-
-### 2. Shadow & Zombie OpenAPI Spec Differ
-Compares an older OpenAPI specification against the current one and checks if removed routes remain live on the target:
-```bash
-python tools/diff_openapi.py --old v1_spec.json --new v2_spec.json --target https://api.target.com
-```
-
-### 3. Out-of-Band (OOB) HTTP Callback Listener
-Verifies empirical data exfiltration and canary callbacks, preventing model hallucination:
-```bash
-python tools/oob_listener.py --port 8888
-```
-
-### 4. Unicode Token Smuggling Encoder
-Encodes strings into invisible Unicode Tag characters (`U+E0000`–`U+E007F`) to test tokenizer boundaries:
-```bash
-python payloads/token_smuggling_unicode.py "Ignore previous instructions"
-```
-
----
-
-## Educational Sandbox: Damn Vulnerable AI App
-
-Test the framework against a locally running vulnerable service:
-
-```bash
-cd examples/vulnerable-ai-app
-pip install -r requirements.txt
-python app.py
-```
-Includes runnable scenarios for:
-- Unauthenticated shadow endpoints (`POST /api/v1/chat`).
-- Cross-tenant vector IDOR (`POST /api/v2/search`).
-- Insecure output rendering sink (`POST /api/v2/render-summary`).
-
----
-
-## Canonical Taxonomy (OWASP LLM 2025 & Agentic ASI 2026)
-
-| Unified ID | Reference | Class | Description |
+| Unified ID | Standard Reference | Vulnerability Class | Core Audit Focus |
 |---|---|---|---|
-| **AIS-01** | OWASP LLM01:2025 | Prompt Injection | Direct instruction overrides and indirect ingestion attacks |
-| **AIS-02** | OWASP LLM02:2025 | Insecure Output Handling | AI output rendered directly into executable sinks (DOM XSS, SQLi) |
-| **AIS-03** | OWASP LLM07:2025 | System Prompt Leakage | Verifiable, token-for-token extraction anchored to internal secrets |
-| **AIS-04** | OWASP LLM08:2025 | Vector & Embedding Flaws | Unauthenticated vector DBs, cross-tenant leaks, corpus poisoning |
-| **AIS-05** | OWASP ASI01:2026 | Agentic Goal Hijack | Subversion of autonomous planning and task graphs |
-| **AIS-06** | OWASP ASI02:2026 | Agent Tool Misuse | Coerced execution of high-risk tools (file read, SSRF, code run) |
-| **AIS-07** | OWASP ASI03:2026 | Privilege Compromise | Confused-deputy operations exceeding caller authorization |
-| **AIS-08** | OWASP ASI06:2026 | Context Poisoning | Durable memory corruption persisting across user sessions |
-| **AIS-09** | OWASP ASI08:2026 | Excessive Agency | Autonomous execution of sensitive or destructive operations |
-| **AIS-10** | OWASP API9:2023 | Shadow & Zombie AI APIs | Unmaintained legacy endpoints lacking current security guardrails |
+| **AIS-01** | OWASP LLM01:2025 | Prompt Injection | Direct instruction overrides, role-delimiter breaks, multimodal prompts. |
+| **AIS-02** | OWASP LLM02:2025 | Insecure Output Handling | Downstream XSS, SQLi, shell execution of model-generated text. |
+| **AIS-03** | OWASP LLM07:2025 | System Prompt Leakage | Token-for-token extraction anchored to non-guessable internal secrets. |
+| **AIS-04** | OWASP LLM08:2025 | Vector & Embedding Flaws | Unauthenticated vector DBs, cross-tenant vector IDOR, corpus poisoning. |
+| **AIS-05** | OWASP ASI01:2026 | Agentic Goal Hijack | Subversion of autonomous agent workflow logic via untrusted input. |
+| **AIS-06** | OWASP ASI02:2026 | Agent Tool Misuse | Model argument coercion leading to SSRF, file access, or command execution. |
+| **AIS-07** | OWASP ASI03:2026 | Privilege Compromise | Agent acting as confused deputy with broader privileges than caller. |
+| **AIS-08** | OWASP ASI06:2026 | Memory & Context Poisoning | Cross-session memory corruption, persistent state manipulation. |
+| **AIS-09** | OWASP ASI08:2026 | Excessive Agency | Autonomous execution of high-impact/destructive actions without HITL. |
+| **AIS-10** | OWASP API9:2023 | Shadow & Zombie AI APIs | Forgotten `/v1/` routes, deprecated specs, and unhardened legacy AI endpoints. |
 
 ---
 
 ## Empirical False-Positive Elimination Protocol
 
-To maintain high signal-to-noise ratio, every vulnerability report must clear four empirical gates:
+> [!IMPORTANT]
+> **Reflection is not exploitation.** A model that merely echoes a payload or outputs generic conversational compliance has not been compromised. A vulnerability exists only when the system crosses an enforced boundary.
+
+To maintain high signal-to-noise ratio, every finding must clear four empirical gates:
 
 1. **The Run-Twice Rule (Verbatim Reproducibility)**:
-   A system prompt leak or internal disclosure must reproduce token-for-token across two fresh sessions. Varying responses signify LLM confabulation and are immediately dismissed.
+   A system prompt leak or internal disclosure must reproduce token-for-token across two fresh sessions. Varying responses indicate model confabulation and are immediately dismissed.
 2. **The Known-Secret Anchor**:
    Prompt extraction must expose a non-guessable, verifiable anchor (e.g., private variable name, internal function signature, or configuration hash verified in source code).
 3. **Verifiable Cross-Tenant Evidence**:
    Cross-tenant data exposure must retrieve an artifact belonging to an external test account under tester control. Synthetic names generated by the model do not constitute an IDOR.
 4. **Out-of-Band (OOB) Proof of Egress**:
    Data exfiltration via markdown images or fetch tools requires a correlated network interaction logged on an authorized listener (`interactsh` / Burp Collaborator / `tools/oob_listener.py`).
+
+---
+
+## Educational Sandbox: Damn Vulnerable AI App
+
+Test the audit engine locally against a vulnerable service:
+
+```bash
+cd examples/vulnerable-ai-app
+pip install -r requirements.txt
+python app.py
+```
+
+<details>
+<summary><strong>Included Vulnerability Scenarios</strong></summary>
+
+- **Unauthenticated Shadow Route**: `POST /api/v1/chat` remains exposed without authentication, leaking internal system context.
+- **Cross-Tenant Vector IDOR**: `POST /api/v2/search` accepts arbitrary client-controlled `tenant_id` parameters.
+- **Insecure Output Sink**: `POST /api/v2/render-summary` returns unsanitized HTML allowing model-driven XSS.
+</details>
 
 ---
 
