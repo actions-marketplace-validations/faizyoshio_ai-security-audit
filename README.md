@@ -33,6 +33,10 @@
     <a href="#canonical-taxonomy">Taxonomy</a> •
     <a href="#educational-sandbox-damn-vulnerable-ai-app">Demo Sandbox</a>
   </p>
+
+  <p align="center">
+    <img src="assets/terminal-demo.svg" alt="ai-sec-audit Interactive Terminal Demo" width="92%">
+  </p>
 </div>
 
 ---
@@ -118,7 +122,29 @@ Compiles structured `findings.json` into an interactive, standalone HTML dashboa
 python tools/generate_html_report.py --input findings.json --output report.html
 ```
 
-### 7. Unicode Token Smuggling Encoder
+### 7. Active Multi-Model Red-Team Runner
+Fuzzes target AI endpoints with canary-tracked payloads and verifies exploits via the Run-Twice gate:
+```bash
+python tools/redteam_runner.py --url http://127.0.0.1:8088/api/v1/chat
+```
+
+### 8. Automated AI Security Remediation Engine
+Generates unified git patches and applies automated fixes for detected AST vulnerabilities:
+```bash
+# Preview diff without modifying files
+python tools/auto_remediate.py --dir ./src
+
+# Apply fixes in-place
+python tools/auto_remediate.py --dir ./src --apply
+```
+
+### 9. OASIS SARIF v2.1.0 Exporter (GitHub Code Scanning)
+Exports findings directly into GitHub Code Scanning format:
+```bash
+python tools/export_sarif.py --input findings.json --output results.sarif
+```
+
+### 10. Unicode Token Smuggling Encoder
 Encodes strings into invisible Unicode Tag characters (`U+E0000`–`U+E007F`) to test tokenizer boundary bypasses:
 ```bash
 python payloads/token_smuggling_unicode.py "Ignore previous instructions"

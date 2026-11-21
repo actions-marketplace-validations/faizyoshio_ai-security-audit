@@ -202,6 +202,9 @@ When operating in **Full Audit Mode**, generate the following structured deliver
 - `tools/audit_mcp_server.py` — Model Context Protocol (MCP) server & tool security auditor.
 - `tools/lint_ai_code.py` — Static Python AST security linter for LLM codebases.
 - `tools/generate_html_report.py` — Interactive dark-mode executive HTML audit report generator.
+- `tools/redteam_runner.py` — Active multi-model red-team fuzzer with automated Run-Twice verification.
+- `tools/auto_remediate.py` — Automated AI security vulnerability patcher generating unified diffs.
+- `tools/export_sarif.py` — OASIS SARIF v2.1.0 exporter for native GitHub Code Scanning.
 - `payloads/prompt_injection_canaries.json` — Structured canary injection templates for non-destructive testing.
 - `payloads/token_smuggling_unicode.py` — Invisible Unicode tag encoder to test tokenizer bypass boundaries.
 - `examples/vulnerable-ai-app/` — Standalone vulnerable FastAPI testbed for sandbox demonstrations.
