@@ -1,5 +1,5 @@
 name: 'AI Security Audit'
-description: 'Automated static security scanner and checklist validator for GenAI, RAG, and LLM codebases.'
+description: 'Automated static security scanner, AST linter, and SARIF exporter for GenAI, RAG, and LLM codebases.'
 author: 'faizyoshio'
 
 branding:
@@ -15,6 +15,10 @@ inputs:
     description: 'Check for local unauthenticated vector database ports'
     required: false
     default: 'false'
+  sarif-output:
+    description: 'Path to export OASIS SARIF results for GitHub Code Scanning'
+    required: false
+    default: 'results.sarif'
 
 runs:
   using: 'composite'
@@ -22,7 +26,7 @@ runs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.11'
 
     - name: Check Vector DB Perimeter
       if: inputs.check-vector-ports == 'true'
@@ -30,8 +34,10 @@ runs:
       run: |
         python ${{ github.action_path }}/tools/scan_vector_ports.py --host 127.0.0.1
 
-    - name: Scan Codebase for Unsafe AI Patterns
+    - name: Run AST AI Security Linter
       shell: bash
       run: |
-        echo "[*] Scanning ${{ inputs.target-dir }} for insecure AI output sinks (dangerouslySetInnerHTML, eval)..."
-        grep -rnE "(dangerouslySetInnerHTML|eval\(|subprocess\.Popen\(.*shell=True\))" ${{ inputs.target-dir }} || echo "[+] No high-risk output sinks detected."
+        echo "[*] Running AST security linter on ${{ inputs.target-dir }}..."
+        python ${{ github.action_path }}/tools/lint_ai_code.py --dir ${{ inputs.target-dir }} --json > _linter_findings.json
+        python ${{ github.action_path }}/tools/export_sarif.py --input _linter_findings.json --output ${{ inputs.sarif-output }}
+        echo "[+] Exported Code Scanning SARIF to ${{ inputs.sarif-output }}"

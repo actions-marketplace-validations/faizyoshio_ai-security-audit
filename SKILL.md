@@ -182,7 +182,22 @@ When operating in **Full Audit Mode**, generate the following structured deliver
 
 ---
 
-## 7. Reference Index
+## 7. Parallel Multi-Agent Swarm Orchestration (Hunting Waves)
+
+When operating under an agent swarm coordinator or delegating sub-agents (`invoke_subagent` / `swarm`):
+
+- **Wave A: Perimeter & Reconnaissance (`agent_role: perimeter_hunter`)**:
+  - Runs `diff-openapi`, probes version drift (`/v1/` vs `/v2/`), audits exposed Swagger/OpenAPI contracts, and identifies unmoderated zombie LLM routes.
+- **Wave B: Vector Store & Ingestion Isolation (`agent_role: vector_hunter`)**:
+  - Probes vector database ports (`scan_vector_ports.py`), audits multi-tenant namespace scoping, and tests persistent semantic corpus poisoning.
+- **Wave C: Codebase & Downstream Sink Taint (`agent_role: sink_auditor`)**:
+  - Executes AST static linter (`lint_ai_code.py`), traces model completions into DOM/SQL/shell execution sinks, and validates MCP server manifests (`audit_mcp_server.py`).
+- **Wave D: Active Adversarial Verification & Remediation (`agent_role: exploit_verifier`)**:
+  - Runs active canary testing (`redteam_runner.py`), verifies Gate 1 (Run-Twice Rule), confirms OOB callbacks (`oob_listener.py`), produces SARIF reports (`export_sarif.py`), and generates minimal effective fixes (`auto_remediate.py`).
+
+---
+
+## 8. Reference Index
 
 - `references/01-owasp-genai-agentic-matrix.md` — Authoritative crosswalk between LLM Top 10 and ASI01-ASI10.
 - `references/02-false-positive-elimination-gates.md` — In-depth empirical proof protocols.
@@ -194,7 +209,7 @@ When operating in **Full Audit Mode**, generate the following structured deliver
 
 ---
 
-## 8. Bundled Scanner Tools & Test Harnesses
+## 9. Bundled Scanner Tools & Test Harnesses
 
 - `tools/scan_vector_ports.py` — Local/network port & unauthenticated endpoint prober for Chroma, Qdrant, Weaviate, Milvus, and pgvector.
 - `tools/diff_openapi.py` — OpenAPI/Swagger spec differ to identify zombie routes and test live reachability.
