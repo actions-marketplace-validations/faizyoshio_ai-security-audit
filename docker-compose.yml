@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Vulnerable Demo AI API (Ports: 8088)
+  vulnerable-ai-app:
+    build:
+      context: ./examples/vulnerable-ai-app
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+    environment:
+      - PORT=8088
+    restart: unless-stopped
+
+  # Unauthenticated Chroma Vector Store (Default Port: 8000)
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - IS_PERSISTENT=FALSE
+      - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
+
+  # Unauthenticated Qdrant Vector Store (Default REST: 6333, gRPC: 6334)
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    restart: unless-stopped
+
+  # Local Out-of-Band Callback Listener (Port: 8888)
+  oob-listener:
+    image: python:3.11-slim
+    volumes:
+      - ./tools:/tools:ro
+    working_dir: /tools
+    command: ["python", "oob_listener.py", "--port", "8888", "--host", "0.0.0.0"]
+    ports:
+      - "8888:8888"
+    restart: unless-stopped

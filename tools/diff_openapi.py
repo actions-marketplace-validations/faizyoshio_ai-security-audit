@@ -19,7 +19,7 @@ def load_spec(source: str) -> dict:
         with urllib.request.urlopen(req, timeout=10.0) as resp:
             return json.loads(resp.read().decode("utf-8"))
     else:
-        with open(source, "r", encoding="utf-8") as f:
+        with open(source, "r", encoding="utf-8-sig") as f:
             return json.load(f)
 
 def extract_paths(spec: dict) -> set:

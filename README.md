@@ -114,11 +114,50 @@ Verifies empirical data exfiltration and canary callbacks, preventing model hall
 python tools/oob_listener.py --port 8888
 ```
 
-### 4. Unicode Token Smuggling Encoder
+### 4. Model Context Protocol (MCP) Security Auditor
+Inspects MCP server manifests or connects via stdio to audit dangerous tool capabilities and prompt-injection descriptions:
+```bash
+# Audit from static manifest JSON
+python tools/audit_mcp_server.py --manifest mcp_manifest.json
+
+# Audit live MCP server via stdio command
+python tools/audit_mcp_server.py --cmd "node build/index.js"
+```
+
+### 5. Static Python AST Linter for AI Apps
+Recursively parses Python abstract syntax trees to detect prompt f-string boundary breaks and unsafe execution sinks:
+```bash
+python tools/lint_ai_code.py --dir ./src
+```
+
+### 6. Executive Dark-Mode HTML Report Generator
+Compiles structured `findings.json` into an interactive, standalone HTML dashboard:
+```bash
+python tools/generate_html_report.py --input findings.json --output report.html
+```
+
+### 7. Unicode Token Smuggling Encoder
 Encodes strings into invisible Unicode Tag characters (`U+E0000`–`U+E007F`) to test tokenizer boundary bypasses:
 ```bash
 python payloads/token_smuggling_unicode.py "Ignore previous instructions"
 ```
+
+---
+
+## 1-Click Docker Lab Environment
+
+Spin up a pre-configured audit testbed with target vector stores, the vulnerable AI service, and an OOB listener in one command:
+
+```bash
+docker compose up -d
+```
+
+| Service | Port | Description |
+|---|---|---|
+| **Vulnerable AI App** | `8088` | Demo FastAPI service with shadow routes & vector IDOR |
+| **Chroma DB** | `8000` | Unauthenticated Chroma vector database instance |
+| **Qdrant DB** | `6333` | Unauthenticated Qdrant REST API |
+| **OOB Listener** | `8888` | HTTP interaction listener for canary exfil proofs |
 
 ---
 
@@ -225,7 +264,21 @@ python app.py
 
 ## Quickstart & Installation
 
-### Option 1: Antigravity / Gemini CLI (Local Installation)
+### Option 1: Global CLI via pip
+Install the package directly to run `ai-sec-audit` from anywhere:
+
+```bash
+# Install from local clone
+pip install .
+
+# Or install directly from GitHub
+pip install git+https://github.com/faizyoshio/ai-security-audit.git
+
+# Run unified CLI
+ai-sec-audit --help
+```
+
+### Option 2: Antigravity / Gemini CLI (Agent Skill)
 Clone or copy the skill directory directly into your Antigravity skills config:
 
 ```bash
@@ -237,7 +290,7 @@ Trigger directly in chat:
 /ai-security-audit
 ```
 
-### Option 2: Claude Code
+### Option 3: Claude Code
 Add to your project or personal skill directory:
 
 ```bash
@@ -245,7 +298,7 @@ mkdir -p .claude/skills
 git clone https://github.com/faizyoshio/ai-security-audit.git .claude/skills/ai-security-audit
 ```
 
-### Option 3: Cursor / Windsurf
+### Option 4: Cursor / Windsurf
 Reference the skill in your project instructions or cursor rules:
 ```markdown
 # AI Security Auditing
