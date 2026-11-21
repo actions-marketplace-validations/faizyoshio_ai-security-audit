@@ -41,27 +41,9 @@
 
 Most AI security tools either perform superficial prompt fuzzing (producing hallucinated false positives) or treat AI apps as traditional black-box endpoints. **`ai-security-audit`** unifies defensive source analysis, network reconnaissance, and empirical exploit verification:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        AI THREAT SURFACE LAYERS                        │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-    ┌───────────────────────────────┼───────────────────────────────┐
-    ▼                               ▼                               ▼
-[SHADOW & ZOMBIE APIS]    [PROMPT & INPUT INGESTION]     [VECTOR DB & RAG RETRIEVAL]
-  - Legacy /v1/ routes      - Direct & indirect injection  - Cross-tenant vector IDOR
-  - Unmoderated endpoints   - Multimodal vision prompts    - Persistent corpus poisoning
-  - Spec drift & bypasses   - Token & ASCII smuggling      - Chunk metadata disclosure
-    │                               │                               │
-    └───────────────────────────────┼───────────────────────────────┘
-                                    │
-    ┌───────────────────────────────┴───────────────────────────────┐
-    ▼                                                               ▼
-[AGENTIC PRIVILEGE & TOOLS]                               [DOWNSTREAM SINKS & CODE]
-  - Confused deputy execution                               - AI-driven Stored XSS
-  - Unbounded SSRF via browse tools                         - Unsanitized SQL / Shell sinks
-  - Action-binding & confirmation failures                  - Insecure deserialization
-```
+<p align="center">
+  <img src="assets/threat-surface.svg" alt="AI Threat Surface Layers" width="100%">
+</p>
 
 1. **Source-First Code Audit**: Traces data flow from untrusted user inputs through tokenizers, orchestrator prompts, tool handlers, and execution sinks.
 2. **Empirical False-Positive Gates**: Discards hallucinated leaks using the *Run-Twice Rule*, *Known-Secret Anchors*, and *Out-of-Band (OOB) Egress Verification*.
@@ -163,14 +145,9 @@ docker compose up -d
 
 ## The 6-Phase Audit Lifecycle
 
-```mermaid
-flowchart LR
-    P1["Phase 1\nRecon & Shadow APIs"] --> P2["Phase 2\nVector & RAG Audit"]
-    P2 --> P3["Phase 3\nAdversarial Prompts"]
-    P3 --> P4["Phase 4\nAgentic Tools & HITL"]
-    P4 --> P5["Phase 5\nDownstream Sinks"]
-    P5 --> P6["Phase 6\nChained Remediation"]
-```
+<p align="center">
+  <img src="assets/audit-lifecycle.svg" alt="The 6-Phase Audit Lifecycle" width="100%">
+</p>
 
 <details>
 <summary><strong>Click to expand phase details</strong></summary>

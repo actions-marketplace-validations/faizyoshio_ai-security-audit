@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <filter id="cardGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <style>
+    .card-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .card-item { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; font-size: 12.5px; fill: #cbd5e1; font-weight: 400; }
+    .bullet { font-size: 14px; font-weight: bold; }
+    .conn-line { stroke: #334155; stroke-width: 2; fill: none; stroke-dasharray: 4,4; }
+    .conn-arrow { fill: #38bdf8; }
+  </style>
+
+  <!-- Canvas Background -->
+  <rect width="1080" height="500" rx="16" fill="#070a13" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Top Master Header Badge -->
+  <g transform="translate(365, 24)">
+    <rect width="350" height="42" rx="21" fill="#0f172a" stroke="url(#headerGrad)" stroke-width="1.8"/>
+    <text x="175" y="26" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="14" font-weight="800" fill="#f8fafc" letter-spacing="1.5">
+      AI THREAT SURFACE ARCHITECTURE
+    </text>
+  </g>
+
+  <!-- Connector Lines: Master Header to Layer 1 Cards -->
+  <path d="M 540,66 L 540,95 M 540,95 L 180,95 L 180,120 M 540,95 L 540,120 M 540,95 L 900,95 L 900,120" stroke="#475569" stroke-width="2" fill="none"/>
+  <polygon points="180,120 176,112 184,112" fill="#475569"/>
+  <polygon points="540,120 536,112 544,112" fill="#475569"/>
+  <polygon points="900,120 896,112 904,112" fill="#475569"/>
+
+  <!-- LAYER 1: Ingestion & Perimeter -->
+
+  <!-- Card 1: Shadow & Zombie APIs -->
+  <g transform="translate(30, 120)">
+    <rect width="320" height="150" rx="12" fill="url(#cardBg)" stroke="#f43f5e" stroke-width="1.5"/>
+    <rect x="0" y="0" width="320" height="4" rx="2" fill="#f43f5e"/>
+    <circle cx="24" cy="28" r="5" fill="#f43f5e"/>
+    <text x="38" y="32" class="card-title" fill="#f43f5e">Shadow &amp; Zombie APIs</text>
+    <text x="24" y="66" class="card-item"><tspan fill="#f43f5e" class="bullet">• </tspan>Legacy /v1/ unauthenticated routes</text>
+    <text x="24" y="94" class="card-item"><tspan fill="#f43f5e" class="bullet">• </tspan>Unmoderated foundational models</text>
+    <text x="24" y="122" class="card-item"><tspan fill="#f43f5e" class="bullet">• </tspan>OpenAPI contract drift &amp; bypasses</text>
+  </g>
+
+  <!-- Card 2: Prompt & Input Ingestion -->
+  <g transform="translate(380, 120)">
+    <rect width="320" height="150" rx="12" fill="url(#cardBg)" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="0" y="0" width="320" height="4" rx="2" fill="#38bdf8"/>
+    <circle cx="24" cy="28" r="5" fill="#38bdf8"/>
+    <text x="38" y="32" class="card-title" fill="#38bdf8">Prompt &amp; Input Ingestion</text>
+    <text x="24" y="66" class="card-item"><tspan fill="#38bdf8" class="bullet">• </tspan>Direct &amp; indirect instruction overrides</text>
+    <text x="24" y="94" class="card-item"><tspan fill="#38bdf8" class="bullet">• </tspan>Multimodal vision steganography</text>
+    <text x="24" y="122" class="card-item"><tspan fill="#38bdf8" class="bullet">• </tspan>Unicode tag plane token smuggling</text>
+  </g>
+
+  <!-- Card 3: Vector DB & RAG Retrieval -->
+  <g transform="translate(730, 120)">
+    <rect width="320" height="150" rx="12" fill="url(#cardBg)" stroke="#c084fc" stroke-width="1.5"/>
+    <rect x="0" y="0" width="320" height="4" rx="2" fill="#c084fc"/>
+    <circle cx="24" cy="28" r="5" fill="#c084fc"/>
+    <text x="38" y="32" class="card-title" fill="#c084fc">Vector DB &amp; RAG Retrieval</text>
+    <text x="24" y="66" class="card-item"><tspan fill="#c084fc" class="bullet">• </tspan>Cross-tenant vector namespace IDOR</text>
+    <text x="24" y="94" class="card-item"><tspan fill="#c084fc" class="bullet">• </tspan>Persistent semantic corpus poisoning</text>
+    <text x="24" y="122" class="card-item"><tspan fill="#c084fc" class="bullet">• </tspan>Chunk source &amp; metadata disclosure</text>
+  </g>
+
+  <!-- Connector Lines: Layer 1 to Layer 2 -->
+  <path d="M 190,270 L 190,295 L 340,295 L 340,320" stroke="#475569" stroke-width="2" fill="none"/>
+  <path d="M 540,270 L 540,295 M 540,295 L 340,295 M 540,295 L 740,295 L 740,320" stroke="#475569" stroke-width="2" fill="none"/>
+  <path d="M 890,270 L 890,295 L 740,295" stroke="#475569" stroke-width="2" fill="none"/>
+  <polygon points="340,320 336,312 344,312" fill="#475569"/>
+  <polygon points="740,320 736,312 744,312" fill="#475569"/>
+
+  <!-- LAYER 2: Orchestration & Execution Sinks -->
+
+  <!-- Card 4: Agentic Privilege & Tools -->
+  <g transform="translate(130, 320)">
+    <rect width="400" height="150" rx="12" fill="url(#cardBg)" stroke="#fb923c" stroke-width="1.5"/>
+    <rect x="0" y="0" width="400" height="4" rx="2" fill="#fb923c"/>
+    <circle cx="24" cy="28" r="5" fill="#fb923c"/>
+    <text x="38" y="32" class="card-title" fill="#fb923c">Agentic Privilege &amp; Tools</text>
+    <text x="24" y="66" class="card-item"><tspan fill="#fb923c" class="bullet">• </tspan>Confused deputy high-privilege tool execution</text>
+    <text x="24" y="94" class="card-item"><tspan fill="#fb923c" class="bullet">• </tspan>Unbounded SSRF via browse &amp; fetch tools</text>
+    <text x="24" y="122" class="card-item"><tspan fill="#fb923c" class="bullet">• </tspan>Action-binding &amp; missing HITL confirmations</text>
+  </g>
+
+  <!-- Card 5: Downstream Sinks & Code -->
+  <g transform="translate(550, 320)">
+    <rect width="400" height="150" rx="12" fill="url(#cardBg)" stroke="#ec4899" stroke-width="1.5"/>
+    <rect x="0" y="0" width="400" height="4" rx="2" fill="#ec4899"/>
+    <circle cx="24" cy="28" r="5" fill="#ec4899"/>
+    <text x="38" y="32" class="card-title" fill="#ec4899">Downstream Sinks &amp; Codebase</text>
+    <text x="24" y="66" class="card-item"><tspan fill="#ec4899" class="bullet">• </tspan>AI-driven Stored XSS via unescaped markdown</text>
+    <text x="24" y="94" class="card-item"><tspan fill="#ec4899" class="bullet">• </tspan>Unsanitized SQL / shell command execution</text>
+    <text x="24" y="122" class="card-item"><tspan fill="#ec4899" class="bullet">• </tspan>Prompt-injected deserialization / state corruption</text>
+  </g>
+</svg>
