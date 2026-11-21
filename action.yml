@@ -1,0 +1,37 @@
+name: 'AI Security Audit'
+description: 'Automated static security scanner and checklist validator for GenAI, RAG, and LLM codebases.'
+author: 'faizyoshio'
+
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  target-dir:
+    description: 'Target codebase directory to inspect for AI security boundaries'
+    required: false
+    default: '.'
+  check-vector-ports:
+    description: 'Check for local unauthenticated vector database ports'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Check Vector DB Perimeter
+      if: inputs.check-vector-ports == 'true'
+      shell: bash
+      run: |
+        python ${{ github.action_path }}/tools/scan_vector_ports.py --host 127.0.0.1
+
+    - name: Scan Codebase for Unsafe AI Patterns
+      shell: bash
+      run: |
+        echo "[*] Scanning ${{ inputs.target-dir }} for insecure AI output sinks (dangerouslySetInnerHTML, eval)..."
+        grep -rnE "(dangerouslySetInnerHTML|eval\(|subprocess\.Popen\(.*shell=True\))" ${{ inputs.target-dir }} || echo "[+] No high-risk output sinks detected."

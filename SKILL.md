@@ -191,3 +191,14 @@ When operating in **Full Audit Mode**, generate the following structured deliver
 - `references/05-source-first-code-audit-playbook.md` — Whitebox code review guide for AI frameworks.
 - `references/06-code-level-remediation-patterns.md` — Concrete, defensive implementation snippets.
 - `templates/AUDIT-REPORT-TEMPLATE.md` — Industry-standard markdown audit report template.
+
+---
+
+## 8. Bundled Scanner Tools & Test Harnesses
+
+- `tools/scan_vector_ports.py` — Local/network port & unauthenticated endpoint prober for Chroma, Qdrant, Weaviate, Milvus, and pgvector.
+- `tools/diff_openapi.py` — OpenAPI/Swagger spec differ to identify zombie routes and test live reachability.
+- `tools/oob_listener.py` — Lightweight HTTP callback server for out-of-band egress verification.
+- `payloads/prompt_injection_canaries.json` — Structured canary injection templates for non-destructive testing.
+- `payloads/token_smuggling_unicode.py` — Invisible Unicode tag encoder to test tokenizer bypass boundaries.
+- `examples/vulnerable-ai-app/` — Standalone vulnerable FastAPI testbed for sandbox demonstrations.
