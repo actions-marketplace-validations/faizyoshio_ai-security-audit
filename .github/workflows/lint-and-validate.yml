@@ -1,0 +1,25 @@
+name: Validate Skill and Docs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON Schema files
+        run: |
+          python3 -c "import json; json.load(open('templates/findings-ledger.schema.json'))"
+
+      - name: Check Required Skill Files
+        run: |
+          test -f SKILL.md
+          test -f README.md
+          test -f LICENSE
+          test -f SECURITY.md
+          test -f CONTRIBUTING.md
